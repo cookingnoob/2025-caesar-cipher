@@ -1,4 +1,8 @@
-
+def get_cipher(first, last, letter, shift)
+  alphabet = (first..last).to_a
+  letter_index = alphabet.find_index {|l| l == letter}  
+  alphabet[(letter_index + shift) % alphabet.length]
+end
 
 def cipher (string, shift)
   string_array = string.split("")
@@ -6,11 +10,9 @@ def cipher (string, shift)
     if letter == " " || letter == "!"
       letter
     elsif letter.upcase == letter
-      letter_index = ('A'..'Z').to_a.find_index {|l| l == letter}  
-    ('A'..'Z').to_a[letter_index + shift]
+      get_cipher('A', 'Z',letter, shift)
     elsif letter.downcase == letter
-    letter_index = ('a'..'z').to_a.find_index {|l| l == letter}  
-    ('a'..'z').to_a[letter_index + shift]
+      get_cipher('a', 'z',letter, shift)
     end
   end
   new_string_array.join
@@ -18,4 +20,4 @@ end
 
 
 
-p cipher('Hello OOo!!', 5)
+p cipher('AaaBbb xyzo!!', 1)
