@@ -1,14 +1,14 @@
-uppercase_alphabet = ('A'..'Z').to_a
-lowercase_alphabet = ('a'..'z').to_a
 
-p uppercase_alphabet[10]
-p lowercase_alphabet[10]
 
-def cipher (string)
+def cipher (string, shift)
   string_array = string.split("")
-  string_array.map do |letter|
-    p letter
+  new_string_array = string_array.map do |letter|
+    letter_index = ('a'..'z').to_a.find_index {|l| l == letter}  
+    ('a'..'z').to_a[letter_index + shift]
   end
+  new_string_array.join
 end
 
-cipher('hi how are you')
+
+
+p cipher('hello', 5)
